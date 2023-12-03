@@ -1,20 +1,28 @@
 
 
-const video = document.querySelector('#video');
+const video = document.querySelector('.videoScreen');
 const play = document.querySelector('#play');
-const stop = document.querySelector('#stop');
+const stopp = document.querySelector('#stop');
 const progress = document.querySelector('#progress');
 const timestamp = document.querySelector('#timestamp');
 
 
 // Play and Pause video
 function toggleVideoStatus(){
-    return true;
+    if(video.paused){
+        video.play();
+    } else {
+        video.pause();
+    }
 }
 
 // Update Play/Pause icon
 function updatePlayIcon(){
-    return true;
+    if(video.paused){
+        play.innerHTML = '<i class="fa fa-play fa-2x"></i>';
+    } else {
+        play.innerHTML = '<i class="fa fa-pause fa-2x"></i>';
+    }
 }
 
 // Update Progress
@@ -29,7 +37,8 @@ function setVideoProgress(){
 
 // Stop video
 function stopVideo(){
-    return true;
+    video.currentTime = 0;
+    video.paused();
 }
 
 
@@ -41,6 +50,6 @@ video.addEventListener('timeupdate', updateProgress);
 
 play.addEventListener('click', toggleVideoStatus);
 
-stop.addEventListener('click', stopVideo);
+stopp.addEventListener('click', stopVideo);
 
 progress.addEventListener('change', setVideoProgress)
